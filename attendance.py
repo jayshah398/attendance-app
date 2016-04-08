@@ -8,11 +8,11 @@ s = shelve.open('my_students', writeback=True)
 while True:
     entry = input('Begin scanning or enter q to quit: ')
 
-    if entry in ['q', 'Q']:
-        s.close()
+    try:
+        q = s.close()
         break
 
-    elif entry not in s.keys():
+    except ValueError:
         print('ID not found; scan again.')
 
     else:
